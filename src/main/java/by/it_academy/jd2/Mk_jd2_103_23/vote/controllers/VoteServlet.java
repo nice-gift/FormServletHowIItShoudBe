@@ -48,8 +48,8 @@ public class VoteServlet extends HttpServlet {
 
         try {
             voteService.save(vote);
-//            req.getRequestDispatcher("/statistics").forward(req, resp);
-            resp.sendRedirect(req.getContextPath() + "/statistics");
+            req.getRequestDispatcher("/statistics").forward(req, resp);
+//            resp.sendRedirect(req.getContextPath() + "/statistics");
         } catch (IllegalArgumentException e) {
             resp.setStatus(500);
             resp.getWriter().write(e.getMessage());

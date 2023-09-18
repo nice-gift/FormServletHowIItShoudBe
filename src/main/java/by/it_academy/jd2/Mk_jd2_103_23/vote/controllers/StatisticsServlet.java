@@ -3,7 +3,6 @@ package by.it_academy.jd2.Mk_jd2_103_23.vote.controllers;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Artist;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Genre;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.PairData;
-import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.api.IVoteDao;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.VoteService;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.api.IVoteService;
 import jakarta.servlet.ServletException;

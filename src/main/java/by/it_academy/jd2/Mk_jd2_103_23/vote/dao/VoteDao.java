@@ -16,9 +16,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class VoteDao implements IVoteDao {
-    private final Map<Artist, Integer> artists = new ConcurrentHashMap<>();
-    private final Map<Genre, Integer> genres = new ConcurrentHashMap<>();
-    private final List<PairData<LocalDateTime, String>> about = new ArrayList<>();
+    private static final Map<Artist, Integer> artists = new ConcurrentHashMap<>();
+    private static final Map<Genre, Integer> genres = new ConcurrentHashMap<>();
+    private static final List<PairData<LocalDateTime, String>> about = new ArrayList<>();
 
     @Override
     public void save(Vote vote) {

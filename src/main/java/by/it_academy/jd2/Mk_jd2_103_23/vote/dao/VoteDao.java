@@ -28,4 +28,19 @@ public class VoteDao implements IVoteDao {
             about.add(new PairData<>(LocalDateTime.now(), vote.getAbout()));
         }
     }
+
+    @Override
+    public Map<Artist, Integer> getArtistStatistics() {
+        return artists;
+    }
+
+    @Override
+    public Map<Genre, Integer> getGenreStatistics() {
+        return genres;
+    }
+
+    @Override
+    public List<PairData<LocalDateTime, String>> getAbouts() {
+        return about;
+    }
 }

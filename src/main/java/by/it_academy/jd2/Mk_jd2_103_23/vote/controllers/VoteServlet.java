@@ -2,6 +2,7 @@ package by.it_academy.jd2.Mk_jd2_103_23.vote.controllers;
 
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Artist;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Genre;
+import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.PairData;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Vote;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.exceptions.ValidationException;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.api.IVoteService;
@@ -13,13 +14,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "/vote")
 public class VoteServlet extends HttpServlet {
     private static final String ARTIST_PARAM_NAME = "artist";
     private static final String GENRE_PARAM_NAME = "genre";
     private static final String ABOUT_PARAM_NAME = "about";
-    private IVoteService iVoteService = new VoteService();
+    private IVoteService voteService = new VoteService();
 
     @Override
     protected void doPost(HttpServletRequest req,
@@ -42,25 +47,29 @@ public class VoteServlet extends HttpServlet {
         vote.setAbout(about);
 
         try {
-            iVoteService.save(vote);
+            voteService.save(vote);
+//            req.getRequestDispatcher("/statistics").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/statistics");
         } catch (IllegalArgumentException e) {
             resp.setStatus(500);
             resp.getWriter().write(e.getMessage());
+            return;
         } catch (ValidationException e) {
             resp.setStatus(400);
             resp.getWriter().write(e.getMessage());
+            return;
         }
 
-
-//        Map<String, String[]> parameterMap = req.getParameterMap();
 //        PrintWriter writer = resp.getWriter();
-//        parameterMap.forEach((k, arr) -> {
-//            writer.write("<p>name: " + k + "</p>");
-//            writer.write("<br>");
-//            Arrays.stream(arr)
-//                    .forEach(e -> writer.write("<p>" + e + "</p>"));
-//        });
-
+//
+//        Map<Artist, Integer> artistStatistics = voteService.getArtistStatistics();
+//        artistStatistics.forEach((k, v) -> writer.write(k.getName() + " " + v + "<br/>"));
+//
+//        Map<Genre, Integer> genreStatistics = voteService.getGenreStatistics();
+//        genreStatistics.forEach((k, v) -> writer.write(k.getName() + " " + v + "<br/>"));
+//
+//        List<PairData<LocalDateTime, String>> getAbouts = voteService.getAbouts();
+//        getAbouts.forEach((data) -> writer.write(data.getKey() + " : " + data.getValue() + "<br/>"));
 
     }
 }

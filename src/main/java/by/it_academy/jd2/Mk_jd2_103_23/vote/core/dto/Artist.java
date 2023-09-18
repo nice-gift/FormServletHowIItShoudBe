@@ -1,5 +1,7 @@
 package by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto;
 
+import java.util.Objects;
+
 public class Artist {
     private String name;
 
@@ -16,6 +18,19 @@ public class Artist {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artist artist = (Artist) o;
+        return Objects.equals(name, artist.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

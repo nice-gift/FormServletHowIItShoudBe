@@ -16,12 +16,16 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class VoteDao implements IVoteDao {
-    private Map<Artist, Integer> artists = new ConcurrentHashMap<>();
-    private Map<Genre, Integer> genres = new ConcurrentHashMap<>();
-    private List<PairData<LocalDateTime, String>> about = new ArrayList<>();
+    private final Map<Artist, Integer> artists = new ConcurrentHashMap<>();
+    private final Map<Genre, Integer> genres = new ConcurrentHashMap<>();
+    private final List<PairData<LocalDateTime, String>> about = new ArrayList<>();
 
     @Override
     public void save(Vote vote) {
-
+        artists.compute(vote.getArtist(), (k, v) -> v != null ? ++v : 1);
+        vote.getGenres().forEach(g -> genres.compute(g, (k, v) -> v != null ? ++v : 1));
+        synchronized (about) {
+            about.add(new PairData<>(LocalDateTime.now(), vote.getAbout()));
+        }
     }
 }

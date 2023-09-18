@@ -2,11 +2,12 @@ package by.it_academy.jd2.Mk_jd2_103_23.vote.service;
 
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Vote;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.exceptions.ValidationException;
+import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.VoteDao;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.api.IVoteDao;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.api.IVoteService;
 
 public class VoteService implements IVoteService {
-    private IVoteDao voteDao=e->{};
+    private IVoteDao voteDao=new VoteDao();
 
     @Override
     public void save(Vote vote) {

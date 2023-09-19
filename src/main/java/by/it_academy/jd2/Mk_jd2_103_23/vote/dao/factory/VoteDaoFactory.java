@@ -1,6 +1,7 @@
 package by.it_academy.jd2.Mk_jd2_103_23.vote.dao.factory;
 
 import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.VoteDao;
+import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.api.IVoteDao;
 
 public class VoteDaoFactory {
     private volatile static VoteDao uniqueInstance;
@@ -8,7 +9,7 @@ public class VoteDaoFactory {
     private VoteDaoFactory() {
     }
 
-    public static VoteDao getInstance() {
+    public static IVoteDao getInstance() {
         if (uniqueInstance == null) {
             synchronized (VoteDaoFactory.class) {
                 if (uniqueInstance == null) {

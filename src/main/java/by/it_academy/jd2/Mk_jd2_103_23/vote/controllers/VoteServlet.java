@@ -7,6 +7,7 @@ import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Vote;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.exceptions.ValidationException;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.api.IVoteService;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.VoteService;
+import by.it_academy.jd2.Mk_jd2_103_23.vote.service.factory.VoteServiceFactory;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +25,7 @@ public class VoteServlet extends HttpServlet {
     private static final String ARTIST_PARAM_NAME = "artist";
     private static final String GENRE_PARAM_NAME = "genre";
     private static final String ABOUT_PARAM_NAME = "about";
-    private IVoteService voteService = new VoteService();
+    private IVoteService voteService = VoteServiceFactory.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req,

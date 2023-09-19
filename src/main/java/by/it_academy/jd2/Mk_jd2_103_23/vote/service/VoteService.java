@@ -5,8 +5,8 @@ import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Genre;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.PairData;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.dto.Vote;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.core.exceptions.ValidationException;
-import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.VoteDao;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.api.IVoteDao;
+import by.it_academy.jd2.Mk_jd2_103_23.vote.dao.factory.VoteDaoFactory;
 import by.it_academy.jd2.Mk_jd2_103_23.vote.service.api.IVoteService;
 
 import java.time.LocalDateTime;
@@ -14,11 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 public class VoteService implements IVoteService {
+
+//    private IVoteDao voteDao = VoteDaoFactory.getInstance();
+    private IVoteDao voteDao;
+
     public VoteService(IVoteDao voteDao) {
         this.voteDao = voteDao;
     }
-
-    private IVoteDao voteDao = VoteDao.getInstance();
 
     @Override
     public void save(Vote vote) {

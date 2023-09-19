@@ -20,22 +20,6 @@ public class VoteDao implements IVoteDao {
     private static final Map<Genre, Integer> genres = new ConcurrentHashMap<>();
     private static final List<PairData<LocalDateTime, String>> about = new ArrayList<>();
 
-    private volatile static VoteDao uniqueInstance;
-
-    private VoteDao() {
-    }
-
-    public static VoteDao getInstance() {
-        if (uniqueInstance == null) {
-            synchronized (VoteDao.class) {
-                if (uniqueInstance == null) {
-                    uniqueInstance = new VoteDao();
-                }
-            }
-        }
-        return uniqueInstance;
-    }
-
     @Override
     public void save(Vote vote) {
         artists.compute(vote.getArtist(), (k, v) -> v != null ? ++v : 1);

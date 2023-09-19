@@ -14,7 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 public class VoteService implements IVoteService {
-    private IVoteDao voteDao = new VoteDao();
+    public VoteService(IVoteDao voteDao) {
+        this.voteDao = voteDao;
+    }
+
+    private IVoteDao voteDao = VoteDao.getInstance();
 
     @Override
     public void save(Vote vote) {
